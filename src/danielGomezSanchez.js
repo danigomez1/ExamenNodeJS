@@ -15,7 +15,7 @@ admin.initializeApp({
 });
 
 //mètode put
-app.put('danielGomez/jugadors', async (req, res) => {
+app.put('/danielGomez/estadi', async (req, res) => {
   const db = admin.firestore();
   const estadi = db.collection('mundial22Gomez')
   const lusail = {lusail: req.body.lusail}
@@ -25,7 +25,12 @@ app.put('danielGomez/jugadors', async (req, res) => {
 })
 
 //mètode get
-
+app.get('/danielGomez/jugadors', async (req, res) => {
+  const db = admin.firestore();
+  const doc = await db.collection('mundial22Gomez').doc('final22Gomez').get();
+  const firebaseData = doc.data();
+  res.json(firebaseData)
+})
 
 app.listen(port, () => {
   console.log(`Servidor escoltant al port: ${port}`);
